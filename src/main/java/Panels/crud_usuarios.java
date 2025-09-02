@@ -6,6 +6,7 @@ package Panels;
 
 import DAO.LogicaUsuarioDAO;
 import Modelo.Usuario;
+import Vista.Vista;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -35,8 +36,8 @@ public class crud_usuarios extends javax.swing.JPanel {
 
     
     public void inicializarTabla() {
-        String[] etiquetas = {"Nombre", "ApellidoP", "ApellidoM", "Nombre completo", "Correo electronico", "Rol", "Fecha de registro"};
-
+        String[] etiquetas = {"Nombre", "ApellidoP", "ApellidoM", "Nombre completo", "Correo electronico", "Rol", "Fecha de registro", "ID"};
+ 
         // Modelo de tabla no editable
         DefaultTableModel model = new DefaultTableModel(etiquetas, 0) {
             @Override
@@ -44,6 +45,8 @@ public class crud_usuarios extends javax.swing.JPanel {
                 return false; // Ninguna celda editable
             }
         };
+        
+        Vista v = new Vista();
 
         // Asignar modelo a la tabla
         tablaEmpleados.setModel(model);
@@ -56,10 +59,10 @@ public class crud_usuarios extends javax.swing.JPanel {
         tablaEmpleados.getTableHeader().setReorderingAllowed(false);
 
         // Configuración de anchos de columnas
-        ocultarColumna(tablaEmpleados, 0,1,2); // Ocultar Nombre y Apellidos}
+        ocultarColumna(tablaEmpleados, 0,1,2,6); // Ocultar Nombre y Apellidos}
         tablaEmpleados.getColumnModel().getColumn(3).setPreferredWidth(200);//NombreCompleto
         tablaEmpleados.getColumnModel().getColumn(4).setPreferredWidth(200); // Correo
-        tablaEmpleados.getColumnModel().getColumn(5).setPreferredWidth(100); // Rol
+        tablaEmpleados.getColumnModel().getColumn(5).setPreferredWidth(100);// Rol
         tablaEmpleados.getColumnModel().getColumn(0).setResizable(false);
 
         // Listener para seleccionar fila
@@ -71,6 +74,7 @@ public class crud_usuarios extends javax.swing.JPanel {
                 String apellidom = tablaEmpleados.getValueAt(fila, 2).toString(); // aunque esté oculto, sigue estando en el modelo
                 String correo = tablaEmpleados.getValueAt(fila, 4).toString();
                 String rol = tablaEmpleados.getValueAt(fila, 5).toString();
+                String ID = tablaEmpleados.getValueAt(fila, 7).toString();
               /*  String nombrecompleto = tablaEmpleados.getValueAt(fila, 4).toString(); */
 
                 txtNombre.setText(nombre);
@@ -78,6 +82,7 @@ public class crud_usuarios extends javax.swing.JPanel {
                 txtApellidoM.setText(apellidom);
                 txtEmail.setText(correo);
                 comboRol.setSelectedItem(rol);
+                v.txtID.setText(ID);
             }
         });
 
@@ -93,13 +98,14 @@ public class crud_usuarios extends javax.swing.JPanel {
                     u.getEmail(),
                     u.isRol() ? "Administrador" : "Trabajador",
                     u.getFechaCreacionFormateada(),
+                    u.getID()
                     
             });
         }
     }
 
     // Método para ocultar columnas sin borrarlas del modelo
-    private void ocultarColumna(JTable tabla, int index, int index1, int index2) {
+    private void ocultarColumna(JTable tabla, int index, int index1, int index2, int index3) {
         tabla.getColumnModel().getColumn(index).setMinWidth(0);
         tabla.getColumnModel().getColumn(index).setMaxWidth(0);
         tabla.getColumnModel().getColumn(index).setPreferredWidth(0);
@@ -111,6 +117,10 @@ public class crud_usuarios extends javax.swing.JPanel {
         tabla.getColumnModel().getColumn(index2).setMinWidth(0);
         tabla.getColumnModel().getColumn(index2).setMaxWidth(0);
         tabla.getColumnModel().getColumn(index2).setPreferredWidth(0);
+        
+        tabla.getColumnModel().getColumn(index3).setMinWidth(0);
+        tabla.getColumnModel().getColumn(index3).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(index3).setPreferredWidth(0);
     }
 
     
@@ -376,7 +386,7 @@ public class crud_usuarios extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     public javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnSeleccionar;
     public javax.swing.JComboBox<String> comboRol;
