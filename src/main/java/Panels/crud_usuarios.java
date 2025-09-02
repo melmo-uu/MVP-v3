@@ -29,7 +29,7 @@ public class crud_usuarios extends javax.swing.JPanel {
 
         scrollTabla.setVisible(false);
         txtBuscador.setVisible(false);
-        System.out.println("Hola mundo");
+        
        
     }
 
