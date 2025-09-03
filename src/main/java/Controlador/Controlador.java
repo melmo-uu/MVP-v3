@@ -7,12 +7,13 @@ package Controlador;
 import Panels.asistencia;
 import Vista.login;
 import Panels.crud_usuarios;
-import Panels.control_asist;
+import Vista.control_asist;
 import Vista.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import DAO.*;
 import Modelo.Usuario;
+import Panels.crear;
 import Panels.informes;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -32,6 +33,7 @@ public class Controlador implements ActionListener{
     private crud_usuarios crud;
     private asistencia as;
     private informes i;
+    private crear c;
 
     // DAO y lógica de negocio
     private UsuarioDAO dao;
@@ -40,8 +42,9 @@ public class Controlador implements ActionListener{
     // Modelo
     private Usuario u;
 
-    public Controlador( Vista v, login l, control_asist asist, crud_usuarios crud, asistencia as, informes i) {
+    public Controlador( Vista v, login l, control_asist asist, crud_usuarios crud, asistencia as, informes i, crear c) {
         this.asist = asist;
+        this.c = c;
         this.i = i;
         this.crud = crud;
         this.asisDao = new LogicaAsistenciaDAO();
@@ -79,7 +82,7 @@ public class Controlador implements ActionListener{
         }
         
         if(e.getSource() == crud.btnAgregar){
-            agregarUsuario();
+            v.mostrarCrear(c, crud);
         }
         
         if(e.getSource() == as.btnIngreso){
@@ -93,6 +96,9 @@ public class Controlador implements ActionListener{
             limpiarCampos();
         }
         
+        if(e.getSource() == crud.btnEliminar){
+            eliminarUsuario();
+        }
     }
     
     
@@ -172,12 +178,12 @@ public class Controlador implements ActionListener{
 
     
     private void agregarUsuario(){
-        String nombre = crud.txtNombre.getText();
-        String apellidop = crud.txtApellidoP.getText();
-        String apellidom = crud.txtApellidoM.getText();
-        String pass = crud.txtPass.getText();
-        String email = crud.txtEmail.getText();
-        String rol = crud.comboRol.getSelectedItem().toString();
+        String nombre = c.txtNombre.getText();
+        String apellidop = c.txtApellidoP.getText();
+        String apellidom = c.txtApellidoM.getText();
+        String pass = c.txtPass.getText();
+        String email = c.txtEmail.getText();
+        String rol = c.comboRol.getSelectedItem().toString();
         
         if(!validarCamposVacios(pass, email, nombre, apellidop, apellidom, rol)) return;
         if(!validarFormatoCorreo(email)) return;
@@ -203,6 +209,10 @@ public class Controlador implements ActionListener{
         return true;
     }
     
+    private void abrirCerrar(){
+        
+    }
+    
     private void mostrarocultar (){
         if (crud.scrollTabla.isVisible()) {
             crud.scrollTabla.setVisible(false);
@@ -215,6 +225,40 @@ public class Controlador implements ActionListener{
         crud.scrollTabla.getParent().revalidate();
         crud.scrollTabla.getParent().repaint();
     }
+    private void eliminarUsuario() {
+    String IDusuario = crud.txtID.getText();
+
+        if (IDusuario.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Debes seleccionar un usuario");
+            return;
+        }
+
+        int ID;
+        try {
+            ID = Integer.parseInt(IDusuario);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El ID ingresado no es válido");
+            return;
+        }
+
+        if (ID <= 0) {
+            JOptionPane.showMessageDialog(null, "El ID del usuario no es válido");
+            return;
+        }
+
+        int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar al usuario?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            dao.eliminar(ID);
+            List<Usuario> usuarios = dao.listarTodos();
+            crud.cargarDatos(usuarios);
+            JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
+           
+            
+        }
+    }
+
+
   
     private void cerrarSesion() {
         
@@ -241,12 +285,13 @@ public class Controlador implements ActionListener{
     
     
     private void limpiarCampos(){
-        crud.txtNombre.setText("");
-        crud.txtApellidoP.setText("");
-        crud.txtEmail.setText("");
-        crud.txtPass.setText("");
-        crud.txtApellidoM.setText("");
-        crud.comboRol.setSelectedIndex(0);
+        c.txtNombre.setText("");
+        c.txtApellidoP.setText("");
+        c.txtEmail.setText("");
+        c.txtPass.setText("");
+        c.txtApellidoM.setText("");
+        c.comboRol.setSelectedIndex(0);
+        c.txtConfPass.setText("");
         
     }
     
@@ -269,6 +314,7 @@ public class Controlador implements ActionListener{
         asist.btnCerrarSesion.addActionListener(this);
         crud.btnAgregar.addActionListener(this);
         as.btnSalida.addActionListener(this);
+        crud.btnEliminar.addActionListener(this);
         as.btnIngreso.addActionListener(this);
         crud.btnLimpiar.addActionListener(this);
         crud.txtBuscador.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -280,6 +326,8 @@ public class Controlador implements ActionListener{
         }
     });
     }
+    
+    
     
     public void retornar(){
         v.mostrarLogin(l);

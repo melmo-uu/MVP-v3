@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Panels;
+package Vista;
 
 /**
  *
@@ -40,18 +40,23 @@ public class control_asist extends javax.swing.JPanel {
         Contenido = new javax.swing.JPanel();
         PanelTitulo = new javax.swing.JPanel();
 
-        PanelLateral.setBackground(new java.awt.Color(110, 162, 223));
+        setBackground(new java.awt.Color(247, 246, 247));
 
-        btnInformes.setBackground(new java.awt.Color(26, 117, 223));
+        PanelLateral.setBackground(new java.awt.Color(0, 102, 204));
+
+        btnInformes.setBackground(new java.awt.Color(51, 102, 255));
+        btnInformes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnInformes.setForeground(new java.awt.Color(255, 255, 255));
         btnInformes.setText("Informes");
         btnInformes.setBorderPainted(false);
 
-        btnCerrarSesion.setBackground(new java.awt.Color(26, 117, 223));
+        btnCerrarSesion.setBackground(new java.awt.Color(51, 102, 255));
+        btnCerrarSesion.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnCerrarSesion.setText("Cerrar sesión");
 
-        btnCrud.setBackground(new java.awt.Color(26, 117, 223));
+        btnCrud.setBackground(new java.awt.Color(51, 102, 255));
+        btnCrud.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCrud.setForeground(new java.awt.Color(255, 255, 255));
         btnCrud.setText("Usuarios");
 
@@ -74,34 +79,34 @@ public class control_asist extends javax.swing.JPanel {
                 .addComponent(btnCrud, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnInformes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
-                .addComponent(btnCerrarSesion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        PanelUsuario.setBackground(new java.awt.Color(26, 117, 223));
+        PanelUsuario.setBackground(new java.awt.Color(51, 102, 255));
 
         lblNombre.setBackground(new java.awt.Color(255, 255, 255));
-        lblNombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNombre.setText("Nombre usuario");
 
         javax.swing.GroupLayout PanelUsuarioLayout = new javax.swing.GroupLayout(PanelUsuario);
         PanelUsuario.setLayout(PanelUsuarioLayout);
         PanelUsuarioLayout.setHorizontalGroup(
             PanelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelUsuarioLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(lblNombre)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         PanelUsuarioLayout.setVerticalGroup(
             PanelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelUsuarioLayout.createSequentialGroup()
-                .addContainerGap(167, Short.MAX_VALUE)
+                .addContainerGap(160, Short.MAX_VALUE)
                 .addComponent(lblNombre)
                 .addGap(38, 38, 38))
         );
+
+        Contenido.setBackground(new java.awt.Color(247, 246, 247));
 
         javax.swing.GroupLayout ContenidoLayout = new javax.swing.GroupLayout(Contenido);
         Contenido.setLayout(ContenidoLayout);
@@ -114,7 +119,7 @@ public class control_asist extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        PanelTitulo.setBackground(new java.awt.Color(165, 191, 223));
+        PanelTitulo.setBackground(new java.awt.Color(0, 102, 204));
 
         javax.swing.GroupLayout PanelTituloLayout = new javax.swing.GroupLayout(PanelTitulo);
         PanelTitulo.setLayout(PanelTituloLayout);

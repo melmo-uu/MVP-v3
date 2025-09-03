@@ -5,8 +5,9 @@
 package Vista;
 
 import Panels.asistencia;
+import Panels.crear;
 import Panels.crud_usuarios;
-import Panels.control_asist;
+import Vista.control_asist;
 import Panels.informes;
 
 /**
@@ -22,7 +23,7 @@ public class Vista extends javax.swing.JFrame {
      */
     public Vista() {
         initComponents();
-        txtID.setVisible(false);
+        
     }
     
     public void mostrarLogin(login l1){
@@ -71,6 +72,15 @@ public class Vista extends javax.swing.JFrame {
         as.Contenido.repaint();
     }
     
+    public void mostrarCrear(crear c, crud_usuarios crud){
+        c.setSize(975, 298);
+        c.setLocation(0, 0);
+        crud.Contenido.removeAll();
+        crud.Contenido.add(c);
+        crud.Contenido.revalidate();
+        crud.Contenido.repaint();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,7 +90,6 @@ public class Vista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtID = new javax.swing.JTextField();
         PanelPrincipal = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -141,6 +150,5 @@ public class Vista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel PanelPrincipal;
-    public javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }

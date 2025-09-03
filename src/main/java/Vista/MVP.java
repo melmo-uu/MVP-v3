@@ -6,10 +6,11 @@ package Vista;
 
 import Panels.asistencia;
 import Panels.crud_usuarios;
-import Panels.control_asist;
+import Vista.control_asist;
 import Controlador.Controlador;
 import DAO.LogicaUsuarioDAO;
 import Modelo.Conexion;
+import Panels.crear;
 import Panels.informes;
 import com.formdev.flatlaf.*;
 import com.formdev.flatlaf.intellijthemes.*;
@@ -26,7 +27,7 @@ public class MVP {
     
     public static void main(String[] args) {
         
-        FlatSpacegrayIJTheme.setup(); //Pueden revisar los fondos con Flat, Ctrl + espacio para ver todos los temas disponibles
+        FlatLightFlatIJTheme.setup(); //Pueden revisar los fondos con Flat, Ctrl + espacio para ver todos los temas disponibles
         
         Connection con = initConexion();
         
@@ -54,9 +55,10 @@ public class MVP {
         crud_usuarios c = new crud_usuarios();
         control_asist a = new control_asist();
         asistencia as = new asistencia();
+        crear cr = new crear();
 
         v.mostrarLogin(l);
-        new Controlador(v, l, a, c, as, i);
+        new Controlador(v, l, a, c, as, i, cr);
         v.setVisible(true);
     }
 }

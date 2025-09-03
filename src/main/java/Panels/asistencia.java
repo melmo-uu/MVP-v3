@@ -32,10 +32,16 @@ public class asistencia extends javax.swing.JPanel {
         btnIngreso = new javax.swing.JButton();
         btnSalida = new javax.swing.JButton();
 
+        jPanel1.setBackground(new java.awt.Color(247, 246, 247));
+
+        btnIngreso.setBackground(new java.awt.Color(51, 102, 255));
         btnIngreso.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnIngreso.setForeground(new java.awt.Color(255, 255, 255));
         btnIngreso.setText("Entrada");
 
+        btnSalida.setBackground(new java.awt.Color(51, 102, 255));
         btnSalida.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnSalida.setForeground(new java.awt.Color(255, 255, 255));
         btnSalida.setText("Salida");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

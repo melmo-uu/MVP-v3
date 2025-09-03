@@ -52,7 +52,23 @@ public class LogicaUsuarioDAO implements UsuarioDAO {
         
     }
     
-    public void eliminar(){
+    public void eliminar(int ID){
+        
+        String query = "DELETE FROM USUARIOS "
+                + "WHERE ID_USUARIO = ?";
+        
+        try (PreparedStatement ps = con.prepareStatement(query)){
+            ps.setInt(1, ID);
+            
+            int filas = ps.executeUpdate();
+            
+            if(filas > 0){
+                System.out.println("Usuario eliminado con exito");
+            }
+            
+        }catch(SQLException e ){
+            System.out.println("Error: " + e.getMessage());
+        }
         
     }
     
@@ -100,7 +116,6 @@ public class LogicaUsuarioDAO implements UsuarioDAO {
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
-                int id = rs.getInt("ID_USUARIO");
                 String nombre = rs.getString("NOMBRE");
                 String apellidop = rs.getString("APELLIDOP");   
                 String apellidom = rs.getString("APELLIDOM");
@@ -109,6 +124,7 @@ public class LogicaUsuarioDAO implements UsuarioDAO {
                 String nombreCompleto = rs.getString("NOMBRECOMPLETO");
                 int rol = rs.getInt("ROL");
                 Timestamp ts = rs.getTimestamp("FECHACREACION");
+                int id = rs.getInt("ID_USUARIO");
                 LocalDateTime fecha = null;
                 
                 if(ts != null){

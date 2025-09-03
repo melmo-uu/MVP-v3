@@ -12,7 +12,7 @@ import java.util.List;
 public interface UsuarioDAO {
     void agregar(Usuario usuario);
     void actualizar();
-    void eliminar();
+    void eliminar(int ID);
     Usuario validarUsuario(String correo, String contraseña);
     Usuario obtenerPorID();
     List<Usuario> listarTodos();
