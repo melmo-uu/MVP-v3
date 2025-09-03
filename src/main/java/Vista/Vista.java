@@ -81,6 +81,12 @@ public class Vista extends javax.swing.JFrame {
         crud.Contenido.repaint();
     }
     
+    public void ocultarCrear(crud_usuarios crud){
+        crud.Contenido.removeAll();
+        crud.Contenido.revalidate();
+        crud.Contenido.repaint();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
